@@ -26,6 +26,7 @@ func init() {
 func main() {
 	flag.Parse()
 
+	// Ensure they gave us a filepath.
 	if len(filepath) < 1 {
 		log.Fatalf("You must specify a valid log file to monitor\n")
 	}
@@ -36,21 +37,23 @@ func main() {
 		log.Fatalf("Could not start monitoring the given file `%s`: %v\n", filepath, err)
 	}
 
-	// Initialize our alerting functionality.
+	// Initialize our alerters.
 	totalTrafficAlert := alerts.NewTotalTrafficAlert(os.Stdout, alertThreshold, alertDuration)
+
+	// Initialize our monitors.
 	topSectionsMonitor := monitors.NewTopSectionsMonitor(11 * time.Second) // offset for sleep time.
 	totalsMonitor := monitors.NewTotalsMonitor()
 
-	// Background checking and cleanup.
+	// Background tasks for alerting/monitoring.
 	go func() {
 		for {
 			totalTrafficAlert.Check(time.Now())
-			time.Sleep(time.Millisecond * 500)
+			time.Sleep(time.Millisecond * 500) // Sleep so we don't hog the CPU
 		}
 	}()
 
-	// As new lines come into the log file, ensure alerting and monitoring
-	// recieves them.
+	// As new lines are written to the log file, inform alerting and monitoring.
+	// How they handle this information is agnostic of this loop.
 	go func() {
 		for line := range t.Lines {
 			entry, err := elkish.ParseEntry(line.Text)
@@ -65,7 +68,7 @@ func main() {
 		}
 	}()
 
-	// Every 10 seconds, print some useful information to stdout.
+	// Every 10 seconds, request information from our monitors.
 	for {
 		time.Sleep(10 * time.Second)
 
