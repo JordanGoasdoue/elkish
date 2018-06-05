@@ -1,5 +1,10 @@
 # Elk'ish
 
+[![Build Status](https://travis-ci.org/syntaqx/elkish.svg?branch=master)](https://travis-ci.org/syntaqx/elkish)
+[![Go Report Card](https://goreportcard.com/badge/github.com/syntaqx/elkish)](https://goreportcard.com/report/github.com/syntaqx/elkish)
+[![codecov](https://codecov.io/gh/syntaqx/elkish/branch/master/graph/badge.svg)](https://codecov.io/gh/syntaqx/elkish)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
+
 [CLF]: https://en.wikipedia.org/wiki/Common_Log_Format
 
 > An interview puzzle to create a simple HTTP log monitoring program.
