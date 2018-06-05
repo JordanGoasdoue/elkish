@@ -1,0 +1,14 @@
+language: go
+go:
+  - 1.10.x
+  - tip
+install:
+  - make dep
+script:
+  - make test
+  - make test-cover
+matrix:
+  allow_failures:
+    - go: tip
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
