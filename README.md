@@ -47,9 +47,9 @@ generally not implement myself:
   pattern, I didn't account for some `Add` functions needing errorability, and
   given my attempt to timebox this, I didn't want to iterate on it forever.
   There's some room for improvement there though.
-* Creating new monitors and alerts shouldn't require code. Perhaps a DSL of some
-  sort, or just relying on Kibana/Grafana rather than implementing this. ELK is
-  pretty powerful without needing to reinvent the wheel.
+* [ ] Creating new monitors and alerts shouldn't require code. Perhaps a DSL of
+  some sort, or just relying on Kibana/Grafana rather than implementing this.
+  ELK is pretty powerful without needing to reinvent the wheel.
 * [ ] Test coverage of Monitors is non-existant, but I believe they work. Would
   like to add more coverage here.
 * [ ] Go's default testing is pretty limited. Perhaps using a TDD or BDD
