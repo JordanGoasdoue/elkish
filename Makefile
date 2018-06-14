@@ -24,7 +24,7 @@ clean: ## Clean build artifacts
 	rm -rf bin *.out
 
 build: ## Build the application
-	go build -o bin/elkish cmd/elkish/*.go
+	CGO_ENABLED=0 go build -o bin/elkish cmd/elkish/*.go
 
 test: ## Run unit tests
 	go test -v ./...
