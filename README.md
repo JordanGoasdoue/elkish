@@ -48,7 +48,7 @@ generally not implement myself:
   reason to try and write a custom time series database without a use case or
   performance issue that isn't accounted for by one of the many existing
   options.
-* [ ] Monitors and Alerts aren't interfaced. Although I kept with a common
+* [ ] Monitors and Alerts aren't interfaced well. Although I kept with a common
   pattern, I didn't account for some `Add` functions needing errorability, and
   given my attempt to timebox this, I didn't want to iterate on it forever.
   There's some room for improvement there though.
