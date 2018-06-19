@@ -19,7 +19,7 @@ var alertDuration time.Duration
 
 func init() {
 	flag.StringVar(&filepath, "filepath", "/var/log/access.log", "Log file to monitor")
-	flag.IntVar(&alertThreshold, "alert-threshold", 10, "Total traffic threshhold amount for a given alertDuration")
+	flag.IntVar(&alertThreshold, "alert-threshold", 10, "Total traffic threshold amount for a given alertDuration")
 	flag.DurationVar(&alertDuration, "alert-duration", 2*time.Minute, "Total traffic durration for a given alertThreshold")
 }
 

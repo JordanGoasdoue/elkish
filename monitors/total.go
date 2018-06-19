@@ -12,6 +12,7 @@ Client Failures: %d
 Server Failures: %d
 Responses: %d`
 
+// TotalsMonitor ...
 type TotalsMonitor struct {
 	Successes      int
 	Redirects      int
@@ -20,14 +21,17 @@ type TotalsMonitor struct {
 	Total          int64
 }
 
+// NewTotalsMonitor ...
 func NewTotalsMonitor() *TotalsMonitor {
 	return &TotalsMonitor{}
 }
 
+// String ...
 func (m *TotalsMonitor) String() string {
 	return fmt.Sprintf(totalsMonitorFormat, m.Successes, m.Redirects, m.ClientFailures, m.ServerFailures, m.Total)
 }
 
+// Add ...
 func (m *TotalsMonitor) Add(entry elkish.LogEntry) {
 	switch {
 	case entry.StatusCode >= 500:

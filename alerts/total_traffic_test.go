@@ -53,7 +53,7 @@ func TestTotalTrafficAlertMultiple(t *testing.T) {
 	alert.Add(entry)
 
 	if len(b.String()) != 0 {
-		t.Errorf("Not alert should have occured yet")
+		t.Errorf("Not alert should have occurred yet")
 	}
 
 	alert.Add(entry)

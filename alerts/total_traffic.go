@@ -51,7 +51,7 @@ func (t *TotalTrafficAlert) Check(when time.Time) {
 	}
 }
 
-// thresholdExceeded is a simple DRY for checking if the traffic threshhold has
+// thresholdExceeded is a simple DRY for checking if the traffic threshold has
 // been exceeded
 func (t *TotalTrafficAlert) thresholdExceeded() bool {
 	return len(t.entries) > 0 && t.Len() >= t.threshold

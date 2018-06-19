@@ -10,15 +10,18 @@ import (
 	"github.com/syntaqx/elkish"
 )
 
+// TopSectionsMonitor ...
 type TopSectionsMonitor struct {
 	interval time.Duration
 	sections map[string]*timeseries.TimeSeries
 }
 
+// NewTopSectionsMonitor ...
 func NewTopSectionsMonitor(interval time.Duration) *TopSectionsMonitor {
 	return &TopSectionsMonitor{interval: interval, sections: make(map[string]*timeseries.TimeSeries)}
 }
 
+// String ...
 func (m *TopSectionsMonitor) String() string {
 	var resp string
 	s := make(PairList, len(m.sections))
@@ -48,6 +51,7 @@ func (m *TopSectionsMonitor) String() string {
 	return resp
 }
 
+// Add ...
 func (m *TopSectionsMonitor) Add(entry elkish.LogEntry) {
 	section := strings.Split(strings.TrimLeft(entry.Request.Resource, "/"), "/")[0]
 
@@ -59,13 +63,26 @@ func (m *TopSectionsMonitor) Add(entry elkish.LogEntry) {
 	m.sections[section].Increase(1)
 }
 
+// Pair ...
 type Pair struct {
 	Key   string
 	Value int
 }
 
+// PairList ...
 type PairList []Pair
 
-func (p PairList) Len() int           { return len(p) }
-func (p PairList) Less(i, j int) bool { return p[i].Value < p[j].Value }
-func (p PairList) Swap(i, j int)      { p[i], p[j] = p[j], p[i] }
+// Len ...
+func (p PairList) Len() int {
+	return len(p)
+}
+
+// Less ...
+func (p PairList) Less(i, j int) bool {
+	return p[i].Value < p[j].Value
+}
+
+// Swap ...
+func (p PairList) Swap(i, j int) {
+	p[i], p[j] = p[j], p[i]
+}
